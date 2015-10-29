@@ -1,0 +1,470 @@
+﻿//MISC:
+/*//Scrape
+List<string> scrapedPropertyNames = new List<string>(driver.FindElements(By.ClassName("hotel_name_link")).Select(iw => iw.Text));
+List<string> scrapedPropertyRatings = new List<string>(driver.FindElements(By.ClassName("rating")).Select(iw => iw.Text));
+List<string> scrapedPropertyRooms = new List<string>(driver.FindElements(By.ClassName("room_link")).Select(iw => iw.Text));
+List<string> scrapedPropertyPrices = new List<string>(driver.FindElements(By.ClassName("price")).Select(iw => iw.Text));*/
+
+/* VARS
+string xpathPropertyName = "//div[@data-row-number='" + (i + 1) + "']//a[@class='hotel_name_link url']";
+string xpathPropertyRating = "//div[@data-row-number='" + (i + 1) + "']//span[@class='rating']//span";
+string xpathPropertyRoomsSingle = "//div[@data-row-number='" + (i + 1) + "']//span[@class='room_link']";
+string xpathPropertyRoomsMulti = "//div[@data-row-number='" + (i + 1) + "']//h5[@class='b-recommended-room__title']";
+string xpathPropertyPriceRegular = "//div[@data-row-number='" + (i + 1) + "']//strong[@class='price availprice no_rack_rate']";
+string xpathPropertyPriceDiscount = "//div[@data-row-number='" + (i + 1) + "']//strong[@class='price scarcity_color anim_rack_rate']";
+string xpathPropertyPriceMulti = "//div[@data-row-number='" + (i + 1) + "']//div[@class='b-group-recommendation__price']";
+string xpathPropertyDistrict = "//div[@data-row-number='" + (i + 1) + "']//div[@class='address']//a[@data-stage='1']";
+string xpathPropertyStars = "//div[@data-row-number='" + (i + 1) + "']//i[contains(@class, 'stars')]//span";
+string xpathPropertyPreferredPartner = "//div[@data-row-number='" + (i + 1) + "']//i//span[contains(@class, 'icon_deal_smart']";*/
+
+/*//Scrape property name
+if (elementExists(driver, xpathPropertyName) == true)
+{
+    var scrapePropertyName = driver.FindElement(By.XPath(xpathPropertyName));
+    scrapedPropertyNames.Add(scrapePropertyName.Text);
+}
+else
+{
+    scrapedPropertyNames.Add("NAME MISSING");
+}
+//Scrape property rating
+if (elementExists(driver, xpathPropertyRating) == true)
+{
+    var scrapePropertyRating = driver.FindElement(By.XPath(xpathPropertyRating));
+    scrapedPropertyRatings.Add(scrapePropertyRating.Text);
+}
+else
+{
+    scrapedPropertyRatings.Add("RATING MISSING");
+}
+//Scrape room type
+if (elementExists(driver, xpathPropertyRoomsSingle) == true)
+{
+    var scrapePropertyRooms = driver.FindElement(By.XPath(xpathPropertyRoomsSingle));
+    scrapedPropertyRooms.Add(scrapePropertyRooms.Text);
+}
+else if (elementExists(driver, xpathPropertyRoomsMulti) == true)
+{
+    var scrapePropertyRooms = driver.FindElement(By.XPath(xpathPropertyRoomsMulti));
+    scrapedPropertyRooms.Add(scrapePropertyRooms.Text);
+    //Remove unwanted text before room type
+    if (scrapedPropertyRooms[i].LastIndexOf("\r\n") > 0)
+    {
+        scrapedPropertyRooms[i] = scrapedPropertyRooms[i].Substring(scrapedPropertyRooms[i].LastIndexOf("\r\n") + 2);
+    }
+}
+else
+{
+    if (elementExists(driver, xpathSoldOut) == true)
+    {
+        soldOut = true;
+        scrapedPropertyRooms.Add("SOLD OUT");
+    }
+    else
+    {
+        scrapedPropertyRooms.Add("ROOM MISSING");
+    }
+}
+//Scrape prices
+if (elementExists(driver, xpathPropertyPriceRegular) == true)
+{
+    var scrapePropertyPrice = driver.FindElement(By.XPath(xpathPropertyPriceRegular));
+    scrapedPropertyPrices.Add(scrapePropertyPrice.Text);
+ }
+else if (elementExists(driver, xpathPropertyPriceDiscount) == true)
+{
+    var scrapePropertyPrice = driver.FindElement(By.XPath(xpathPropertyPriceDiscount));
+    scrapedPropertyPrices.Add(scrapePropertyPrice.Text);
+}
+else if (elementExists(driver, xpathPropertyPriceMulti) == true)
+{
+    var scrapePropertyPrice = driver.FindElement(By.XPath(xpathPropertyPriceMulti));
+    scrapedPropertyPrices.Add(scrapePropertyPrice.Text);
+}
+else
+{
+    if (soldOut == true)
+    {
+        scrapedPropertyPrices.Add("SOLD OUT");
+    }
+    else
+    {
+        scrapedPropertyPrices.Add("PRICE MISSING");
+    }
+}
+//Remove everything before currency symbol
+if (scrapedPropertyPrices[i].IndexOf('£') > 0)
+{
+    scrapedPropertyPrices[i] = scrapedPropertyPrices[i].Substring(scrapedPropertyPrices[i].IndexOf(searchCurrency) + 1);
+}
+//Scrape district
+if (elementExists(driver, xpathPropertyDistrict) == true)
+{
+    var scrapePropertyDistrict = driver.FindElement(By.XPath(xpathPropertyDistrict));
+    scrapedPropertyDistrict.Add(scrapePropertyDistrict.Text);
+}
+else
+{
+    scrapedPropertyDistrict.Add("DISTRICT MISSING");
+}
+//Scrape stars
+if (elementExists(driver, xpathPropertyStars) == true)
+{
+    var scrapePropertyStars = driver.FindElement(By.XPath(xpathPropertyStars));
+    scrapedPropertyStars.Add(scrapePropertyStars.Text);
+}
+else
+{
+    scrapedPropertyStars.Add("STARS MISSING");
+}
+//Scrape Preferred partner
+if (elementExists(driver, xpathPropertyPreferredPartner) == true)
+{
+    var scrapePropertyPreferredPartner = driver.FindElement(By.XPath(xpathPropertyPreferredPartner));
+    scrapedPropertyPreferredPartner.Add(scrapePropertyPreferredPartner.Text);
+}
+else
+{
+    scrapedPropertyPreferredPartner.Add("Preferred PARTNER MISSING");
+}*/
+
+/*
+//Input variables
+GV.searchChannel = "Booking.com";
+GV.searchProperty = "Somerset Hotel";
+GV.searchTown = "London";
+GV.searchCounty = "Greater London";
+GV.searchCountry = "United Kingdom";
+GV.searchString = "";
+GV.searchType = "Location";
+int lengthOfStay = 2;
+int noAdults = 2;
+int noChildren = 0;
+int noRooms = 2;
+List<int> childrenAges = new List<int>();
+string bookingPurpose = "Leisure";
+DateTime startDate = new DateTime(2015, 09, 06);
+DateTime endDate = startDate.AddDays(lengthOfStay);
+GV.launchTime = DateTime.Now;
+*/
+
+/*//Scrape variables 
+GV.xpathLocators[0] = ("//div[@data-row-number='" + (i + 1) + "']//a[@class='hotel_name_link url']");                          //Name
+GV.xpathLocators[1] = ("//div[@data-row-number='" + (i + 1) + "']//span[@class='rating']//span");                              //Rating
+GV.xpathLocators[2] = ("//div[@data-row-number='" + (i + 1) + "']//span[@class='room_link']");                                 //Room - Single
+GV.xpathLocators[3] = ("//div[@data-row-number='" + (i + 1) + "']//h5[@class='b-recommended-room__title']");                   //Room - Multiple
+GV.xpathLocators[4] = ("//div[@data-row-number='" + (i + 1) + "']//strong[@class='price availprice no_rack_rate']");           //Price - Regular
+GV.xpathLocators[5] = ("//div[@data-row-number='" + (i + 1) + "']//strong[@class='price scarcity_color anim_rack_rate']");     //Price - Discount
+GV.xpathLocators[6] = ("//div[@data-row-number='" + (i + 1) + "']//div[@class='b-group-recommendation__price']");              //Price - Multiple
+GV.xpathLocators[7] = ("//div[@data-row-number='" + (i + 1) + "']//a[contains(@class, 'district_link')]");                     //District
+GV.xpathLocators[8] = ("//div[@data-row-number='" + (i + 1) + "']//i[contains(@class, 'stars')]//span");                       //Stars
+GV.xpathLocators[9] = ("//div[@data-row-number='" + (i + 1) + "']//i[contains(@class, 'icon_deal_smart')]//span");             //Preferred Partner*/
+
+//static void startSearch(string sortType, string searchString, int noAdults, int noChildren, int noRooms, List<int> childrenAges, string bookingPurpose, DateTime startDate, DateTime endDate)
+//{
+//    {
+//        //Load channel site  
+//        string targetURL = "http://www.booking.com";
+//        GV.driver.Navigate().GoToUrl(targetURL);
+
+//        //Booking.com search variables
+//        var searchBox = GV.driver.FindElement(By.Id("destination"));
+//        var startDay = GV.driver.FindElement(By.Name("checkin_monthday"));
+//        var startYearMonth = GV.driver.FindElement(By.Name("checkin_year_month"));
+//        var endDay = GV.driver.FindElement(By.Name("checkout_monthday"));
+//        var endYearMonth = GV.driver.FindElement(By.Name("checkout_year_month"));
+//        var noGuest = GV.driver.FindElement(By.XPath("//div[@class='b-form-group__controls']//select[@class='b-selectbox__element b-selectbox__groupselection']"));
+//        var comboRooms = GV.driver.FindElement(By.Name("no_rooms"));
+//        var comboAdults = GV.driver.FindElement(By.Name("group_adults"));
+//        var comboChildren = GV.driver.FindElement(By.Name("group_children"));
+//        var searchButton = GV.driver.FindElement(By.XPath("//div[@id='searchboxInc']"));
+
+//        //Place holders
+//        GV.xpathLocators.Add("Property");
+//        GV.xpathLocators.Add("Rating");
+//        GV.xpathLocators.Add("Room - Single");
+//        GV.xpathLocators.Add("Room - Multiple");
+//        GV.xpathLocators.Add("Price - Regular");
+//        GV.xpathLocators.Add("Price - Discount");
+//        GV.xpathLocators.Add("Price - Multiple");
+//        GV.xpathLocators.Add("District");
+//        GV.xpathLocators.Add("Stars");
+//        GV.xpathLocators.Add("Preferred Partner");
+
+//        //Search label
+//        GV.searchLabel.Add("Property");
+//        GV.searchLabel.Add("Rating");
+//        GV.searchLabel.Add("Room");
+//        GV.searchLabel.Add("Room");
+//        GV.searchLabel.Add("Price");
+//        GV.searchLabel.Add("Price");
+//        GV.searchLabel.Add("Price");
+//        GV.searchLabel.Add("District");
+//        GV.searchLabel.Add("Stars");
+//        GV.searchLabel.Add("Preferred Partner");
+
+//        //Search
+//        //Name and location
+//        searchBox.SendKeys(searchString);
+//        System.Threading.Thread.Sleep(1000);
+//        searchBox.SendKeys(Keys.Down);
+//        System.Threading.Thread.Sleep(1000);
+//        searchBox.SendKeys(Keys.Tab);
+//        //Dates
+//        var comboBoxSelect = new SelectElement(startDay);
+//        comboBoxSelect.SelectByValue(startDate.Day.ToString());
+//        comboBoxSelect = new SelectElement(startYearMonth);
+//        comboBoxSelect.SelectByValue(startDate.Year.ToString() + "-" + startDate.Month.ToString());
+//        comboBoxSelect = new SelectElement(endDay);
+//        comboBoxSelect.SelectByValue(endDate.Day.ToString());
+//        comboBoxSelect = new SelectElement(endYearMonth);
+//        comboBoxSelect.SelectByValue(endDate.Year.ToString() + "-" + endDate.Month.ToString());
+//        //Booking type
+//        if (bookingPurpose == "Leisure")
+//        {
+//            GV.driver.FindElement(By.ClassName("b-booker-type__input_leisure-booker")).Click();
+//        }
+//        else if (bookingPurpose == "Business")
+//        {
+//            GV.driver.FindElement(By.ClassName("b-booker-type__input_business-booker")).Click();
+//        }
+//        //Number of adults and children
+//        if ((noAdults == 1 || noAdults == 2) && noChildren == 0 && noRooms == 0)
+//        {
+//            comboBoxSelect = new SelectElement(noGuest);
+//            comboBoxSelect.SelectByValue(noAdults.ToString());
+//        }
+//        else
+//        {
+//            comboBoxSelect = new SelectElement(noGuest);
+//            comboBoxSelect.SelectByValue("3");
+//            comboBoxSelect = new SelectElement(comboRooms);
+//            comboBoxSelect.SelectByValue(noRooms.ToString());
+//            comboBoxSelect = new SelectElement(comboAdults);
+//            comboBoxSelect.SelectByValue(noAdults.ToString());
+//            comboBoxSelect = new SelectElement(comboChildren);
+//            comboBoxSelect.SelectByValue(noChildren.ToString());
+
+//            if (noChildren > 0)
+//            {
+//                var comboChildrenAge = GV.driver.FindElement(By.Name("age")); //Has to be selected prior to for loop
+//                for (int i = 0; i < noChildren; i++)
+//                {
+//                    comboChildrenAge = GV.driver.FindElement(By.XPath("//label[@class='b-custom-element__container']//select[@name='age'][" + (i + 1) + "]"));
+//                    comboBoxSelect = new SelectElement(comboChildrenAge);
+//                    comboBoxSelect.SelectByValue(childrenAges[i].ToString());
+//                }
+//            }
+//        }
+
+//        //Go!
+//        searchButton = GV.driver.FindElement(By.XPath("//div[@id='searchboxInc']//button[@type='submit']"));
+//        searchButton.Click();
+
+//        //Count number of properties on results page
+//        int noProperties = GV.driver.FindElements(By.XPath("//div[@data-row-number]")).Count();
+//        OpenQA.Selenium.Interactions.Actions actions = new OpenQA.Selenium.Interactions.Actions(GV.driver);
+//        for (int i = 0; i < noProperties; i++)
+//        {
+//            //Scrape variables
+//            GV.xpathLocators[0] = ("//div[@data-row-number='" + (i + 1) + "']//a[@class='hotel_name_link url']");                          //Name
+//            GV.xpathLocators[1] = ("//div[@data-row-number='" + (i + 1) + "']//span[@class='rating']//span");                              //Rating
+//            GV.xpathLocators[2] = ("//div[@data-row-number='" + (i + 1) + "']//span[@class='room_link']");                                 //Room - Single
+//            GV.xpathLocators[3] = ("//div[@data-row-number='" + (i + 1) + "']//h5[@class='b-recommended-room__title']");                   //Room - Multiple
+//            GV.xpathLocators[4] = ("//div[@data-row-number='" + (i + 1) + "']//strong[@class='price availprice no_rack_rate']");           //Price - Regular
+//            GV.xpathLocators[5] = ("//div[@data-row-number='" + (i + 1) + "']//strong[@class='price scarcity_color anim_rack_rate']");     //Price - Discount
+//            GV.xpathLocators[6] = ("//div[@data-row-number='" + (i + 1) + "']//div[@class='b-group-recommendation__price']");              //Price - Multiple
+//            GV.xpathLocators[7] = ("//div[@data-row-number='" + (i + 1) + "']//a[contains(@class, 'district_link')]");                     //District
+//            GV.xpathLocators[8] = ("//div[@data-row-number='" + (i + 1) + "']//i[contains(@class, 'stars')]//span");                       //Stars
+//            GV.xpathLocators[9] = ("//div[@data-row-number='" + (i + 1) + "']//i[contains(@class, 'icon_deal_smart')]//span");             //Preferred Partner
+
+//            actions.MoveToElement(GV.driver.FindElement(By.XPath("//div[@data-row-number='" + (i + 1) + "']")));                    
+//            actions.Perform();
+//            System.Threading.Thread.Sleep(250); //0.25 seconds
+
+//            //Log Current time and date
+//            GV.scrapedTimeSearched.Add(DateTime.Now);
+
+//            //Scrape
+//            GV.scrapedPropertyNames.Add(findAndScrape(GV.xpathLocators[0], GV.searchLabel[0]));
+//            GV.scrapedPropertyRatings.Add(findAndScrape(GV.xpathLocators[1], GV.searchLabel[1]));
+
+//            if (findAndScrape(GV.xpathLocators[3], GV.searchLabel[3]) == "MISSING")
+//            {
+//                GV.scrapedPropertyRooms.Add(findAndScrape(GV.xpathLocators[2], GV.searchLabel[2]));
+//            }
+//            else
+//            {
+//                GV.scrapedPropertyRooms.Add(findAndScrape(GV.xpathLocators[3], GV.searchLabel[3]));
+//            }
+
+//            if (findAndScrape(GV.xpathLocators[5], GV.searchLabel[5]) == "MISSING" && findAndScrape(GV.xpathLocators[6], GV.searchLabel[6]) == "MISSING")
+//            {
+//                GV.scrapedPropertyPrices.Add(findAndScrape(GV.xpathLocators[4], GV.searchLabel[4]));
+//            }
+//            else if (findAndScrape(GV.xpathLocators[4], GV.searchLabel[4]) == "MISSING" && findAndScrape(GV.xpathLocators[6], GV.searchLabel[6]) == "MISSING")
+//            {
+//                GV.scrapedPropertyPrices.Add(findAndScrape(GV.xpathLocators[5], GV.searchLabel[5]));
+//            }
+//            else
+//            {
+//                GV.scrapedPropertyPrices.Add(findAndScrape(GV.xpathLocators[6], GV.searchLabel[6]));
+//            }
+
+//            GV.scrapedPropertyDistrict.Add(findAndScrape(GV.xpathLocators[7], GV.searchLabel[7]));
+//            GV.scrapedPropertyStars.Add(findAndScrape(GV.xpathLocators[8], GV.searchLabel[8]));
+//            GV.scrapedPropertyPreferredPartner.Add(findAndScrape(GV.xpathLocators[9], GV.searchLabel[9]));
+//        }
+//    };
+//}
+
+/*
+            //Define XPath locaters
+            var searchBox = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(3, 2).Value));
+            var startDay = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(4, 2).Value));
+            var startYearMonth = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(5, 2).Value));
+            var endDay = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(6, 2).Value));
+            var endYearMonth = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(7, 2).Value));
+            var noGuest = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(8, 2).Value));
+            var comboRooms = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(9, 2).Value));
+            var comboAdults = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(10, 2).Value));
+            var comboChildren = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(11, 2).Value));
+            var searchButton = GV.driver.FindElement(By.XPath((string)GV.wbConfig.Worksheets[GV.searchChannel].Cells(12, 2).Value));
+ */
+
+
+/*//Search            
+            //Name and location
+            searchBox.SendKeys(GV.searchString);
+            System.Threading.Thread.Sleep(1000);
+            searchBox.SendKeys(Keys.Down);
+            System.Threading.Thread.Sleep(1000);
+            searchBox.SendKeys(Keys.Tab);
+            //Dates
+            var comboBoxSelect = new SelectElement(startDay);
+            comboBoxSelect.SelectByValue(startDate.Day.ToString());
+            comboBoxSelect = new SelectElement(startYearMonth);
+            comboBoxSelect.SelectByValue(startDate.Year.ToString() + "-" + startDate.Month.ToString());
+            comboBoxSelect = new SelectElement(endDay);
+            comboBoxSelect.SelectByValue(endDate.Day.ToString());
+            comboBoxSelect = new SelectElement(endYearMonth);
+            comboBoxSelect.SelectByValue(endDate.Year.ToString() + "-" + endDate.Month.ToString());
+            //Booking type
+            if (bookingPurpose == "Leisure")
+            {
+                GV.driver.FindElement(By.ClassName("b-booker-type__input_leisure-booker")).Click();
+            }
+            else if (bookingPurpose == "Business")
+            {
+                GV.driver.FindElement(By.ClassName("b-booker-type__input_business-booker")).Click();
+            }
+            //Number of adults and children
+            if ((noAdults == 1 || noAdults == 2) && noChildren == 0 && noRooms == 0)
+            {
+                comboBoxSelect = new SelectElement(noGuest);
+                comboBoxSelect.SelectByValue(noAdults.ToString());
+            }
+            else
+            {
+                comboBoxSelect = new SelectElement(noGuest);
+                comboBoxSelect.SelectByValue("3");
+                comboBoxSelect = new SelectElement(comboRooms);
+                comboBoxSelect.SelectByValue(noRooms.ToString());
+                comboBoxSelect = new SelectElement(comboAdults);
+                comboBoxSelect.SelectByValue(noAdults.ToString());
+                comboBoxSelect = new SelectElement(comboChildren);
+                comboBoxSelect.SelectByValue(noChildren.ToString());
+
+                if (noChildren > 0)
+                {
+                    var comboChildrenAge = GV.driver.FindElement(By.Name("age")); //Has to be selected prior to for loop
+                    for (int i = 0; i < noChildren; i++)
+                    {
+                        comboChildrenAge = GV.driver.FindElement(By.XPath("//label[@class='b-custom-element__container']//select[@name='age'][" + (i + 1) + "]"));
+                        comboBoxSelect = new SelectElement(comboChildrenAge);
+                        comboBoxSelect.SelectByValue(GV.childrenAges[i].ToString());
+                    }
+                }
+            }
+
+            //Go!
+            searchButton = GV.driver.FindElement(By.XPath("//div[@id='searchboxInc']//button[@type='submit']"));
+            searchButton.Click();*/
+
+
+
+/*//Scraping
+ * GV.scrapedPropertyNames.Add(findAndScrape(GV.xpathScrapeLocators[0], GV.xpathScrapeLabels[0]));
+GV.scrapedPropertyRatings.Add(findAndScrape(GV.xpathScrapeLocators[1], GV.xpathScrapeLabels[1]));
+
+if (findAndScrape(GV.xpathScrapeLocators[3], GV.xpathScrapeLabels[3]) == "MISSING")
+{
+    GV.scrapedPropertyRooms.Add(findAndScrape(GV.xpathScrapeLocators[2], GV.xpathScrapeLabels[2]));
+}
+else
+{
+    GV.scrapedPropertyRooms.Add(findAndScrape(GV.xpathScrapeLocators[3], GV.xpathScrapeLabels[3]));
+}
+
+if (findAndScrape(GV.xpathScrapeLocators[5], GV.xpathScrapeLabels[5]) == "MISSING" && findAndScrape(GV.xpathScrapeLocators[6], GV.xpathScrapeLabels[6]) == "MISSING")
+{
+    GV.scrapedPropertyPrices.Add(findAndScrape(GV.xpathScrapeLocators[4], GV.xpathScrapeLabels[4]));
+}
+else if (findAndScrape(GV.xpathScrapeLocators[4], GV.xpathScrapeLabels[4]) == "MISSING" && findAndScrape(GV.xpathScrapeLocators[6], GV.xpathScrapeLabels[6]) == "MISSING")
+{
+    GV.scrapedPropertyPrices.Add(findAndScrape(GV.xpathScrapeLocators[5], GV.xpathScrapeLabels[5]));
+}
+else
+{
+    GV.scrapedPropertyPrices.Add(findAndScrape(GV.xpathScrapeLocators[6], GV.xpathScrapeLabels[6]));
+}
+
+GV.scrapedPropertyDistrict.Add(findAndScrape(GV.xpathScrapeLocators[7], GV.xpathScrapeLabels[7]));
+GV.scrapedPropertyStars.Add(findAndScrape(GV.xpathScrapeLocators[8], GV.xpathScrapeLabels[8]));
+GV.scrapedPropertyPreferredPartner.Add(findAndScrape(GV.xpathScrapeLocators[9], GV.xpathScrapeLabels[9]));
+
+//Output formatting
+Console.WriteLine("Name:" + GV.scrapedPropertyNames[i] + "\t Rating: " + GV.scrapedPropertyRatings[i]);
+Console.WriteLine("District: " + GV.scrapedPropertyDistrict[i]);
+Console.WriteLine("Room: " + GV.scrapedPropertyRooms[i] + "\t Price: " + GV.scrapedPropertyPrices[i]);
+Console.WriteLine("Stars: " + GV.scrapedPropertyStars[i] + "\t Preferred Partner: " + GV.scrapedPropertyPreferredPartner[i]);
+Console.WriteLine("================================================================");*/
+
+/*for (int i = 0; i < GV.scrapedPropertyNames.Count(); i++)
+{
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 1).Value = GV.scrapedPropertyNames[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 2).Value = GV.scrapedPropertyRatings[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 3).Value = GV.scrapedPropertyRooms[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 4).Value = GV.scrapedPropertyPrices[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 5).Value = GV.scrapedPropertyDistrict[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 6).Value = GV.scrapedPropertyStars[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 7).Value = GV.scrapedPropertyPreferredPartner[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 8).Value = GV.searchChannel;
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 9).Value = GV.scrapedTimeSearched[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 10).Value = GV.scrapedTimeSearched[i];
+    GV.wbOutput.Worksheets[sheetName].Cells(i + 2, 11).Value = GV.launchTime;
+}*/
+
+//Reset global variables
+/*GV.scrapedPropertyNames.Clear();
+GV.scrapedPropertyRatings.Clear();
+GV.scrapedPropertyRooms.Clear();
+GV.scrapedPropertyPrices.Clear();
+GV.scrapedPropertyDistrict.Clear();
+GV.scrapedPropertyStars.Clear();
+GV.scrapedPropertyPreferredPartner.Clear();*/
+
+/*
+
+            //Add table headers to list
+            GV.outputFileHeaders.Add("Property");
+            GV.outputFileHeaders.Add("Rating");
+            GV.outputFileHeaders.Add("Room");
+            GV.outputFileHeaders.Add("Price");
+            GV.outputFileHeaders.Add("District");
+            GV.outputFileHeaders.Add("Stars");
+            GV.outputFileHeaders.Add("Preferred Partner");
+            GV.outputFileHeaders.Add("Channel");
+            GV.outputFileHeaders.Add("Date Searched");
+            GV.outputFileHeaders.Add("Time Searched");
+            GV.outputFileHeaders.Add("Time Launched");*/
